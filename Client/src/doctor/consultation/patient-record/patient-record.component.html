@@ -1,0 +1,97 @@
+<div class="container-fluid px-1 py-1">
+    <div class="container rec-form mb-4 px-4">
+        <!-- FOR START -->
+        <form #recForm="ngForm" (ngSubmit)="onPatientRecordSubmit()">
+            <div class="row form-row">
+                <!-- Patient Details START -->
+                <div class="patient-details w-100 mx-2 my-2 d-flex flex-row align-items-center">
+                    <div class="doc-image">
+                        <img class="border border-1 border-secondary rounded-circle p-1" [src]='PatientDetails.imageHash || "../../../assets/images/patient.png"' alt="Doctor Image" width="150px" height="150px">
+                    </div>
+                    <div class="pat-info d-flex flex-column">
+                        <div class="col">
+                            <div class="row py-2 mx-1">
+                                <div class="col-md-12">
+                                    <b>Patient ID: </b> <span class="docID"> <b>{{PatientDetails.patID}}</b></span>
+                                </div>
+                            </div>
+                            <div class="row-md-12 mx-4 d-flex flex-row justify-content-between">
+                                <div class="col-md-12 d-flex flex-column">
+                                    <div>
+                                        Full Name : <span class="fName">{{PatientDetails.fName}}
+                                            {{PatientDetails.lName}}</span>
+                                    </div>
+                                    <div>
+                                        Email :<span class="emailID">{{PatientDetails.emailID}}</span></div>
+                                    <div>
+                                        Phone:<span class="phone">{{PatientDetails.phone}}</span>
+                                    </div>
+                                    <div>
+                                        City <span class="city">{{PatientDetails.city}}</span>
+                                    </div>
+                                    <div>
+                                        State: <span class="state">{{PatientDetails.state}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Patient Details END -->
+
+                <div class="border-top border-dark"></div>
+
+                <div class="col-md-12 mt-3">
+                    <span class="fas fa-prescription fs-5"></span>
+
+                    <div class="diagnosis w-100">
+                        <textarea [(ngModel)]="model.diagnosis" class="form-control w-80" name="diagnosis" id="diagnosis" style="height: 250px; border-radius: 20px;"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-6 mt-3">
+                    <div class="form-group">
+                        
+
+                        <!-- Follow up -->
+                        <div class="col-md-6">
+                            <h4 class="form-title"><span>Follow up</span></h4>
+                            <hr>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cards">
+                                <table class="table table-nowrap mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <select [(ngModel)]="model.followup" name="followup" class="form-select form-select-sm" id="followup">
+                                                <option value="After 1 Week">After 1 Week</option>
+                                                <option value="After 2 Weeks">After 2 Week</option>
+                                                <option value="After 3 Weeks">After 3 Week</option>
+                                                <option value="After 1 month">After 1 Month</option>
+                                            </select>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- Follow up end -->
+                    </div>
+                    <div class=" col-md-8 files my-3">
+                        <div class="h5">Add files
+                            <hr>
+                        </div>
+                        <div class="files-preview row">
+                            <div class="preview m-1 col-md-3 col-sm-6" *ngFor="let file of LabFiles">
+                                <i class="fas fa-file-pdf fs-1 text-danger"></i>
+                            </div>
+                        </div>
+                        <input class="form-control my-3" type="file" multiple #files (change)="onFileAdd($event)" accept="application/pdf">
+                    </div>
+                </div>
+                <button type="submit" id="btn" class="btn btn-dark mt-3 mb-3"> <i class="fas fa-save"></i> save</button>
+            </div>
+        </form>
+        <!-- END of FORM -->
+    </div>
+</div>
